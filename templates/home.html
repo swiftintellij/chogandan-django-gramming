@@ -1,0 +1,124 @@
+{% extends "main.html" %}
+{% load static %}
+{% block header %}
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <link type="text/css" rel="stylesheet" href="{% static '/styles/main.css' %}">
+    <style type="text/css">
+        .dropzone-mod {
+            border-style: none;
+            background-color: transparent;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="form-box">
+            <div class="wrap">
+
+                <nav class="navbar px-0 py-0">
+                    <div class="title">Gramm</div>
+                    <div class="justify-content-end">
+                        <span class="">{{ request.user }} 님</span>
+                        <span class="ml-2"><a href="#" id="logout">로그아웃</a></span>
+                    </div>
+                </nav>
+                <div class="mt-5">
+                    <div class="wrap-input" data-validate="오늘의 글을 입력하세요.">
+                        <label>
+                            <div class="sub-title">오늘의 글을 전해주세요.</div>
+                        </label>
+                        <textarea class="form-control text-input mt-3" id="text" rows="6"></textarea>
+                        <span class="focus-input" data-placeholder=""></span>
+                    </div>
+
+                    <div class="wrap-input" id="dropzone">
+                        <form id="upload-widget" method="post" class="dropzone dz-clickable dropzone-mod">
+                            {% csrf_token %}
+                            <div class="dz-message">
+                                <span>여기에 이미지 파일을 떨어트리거나 클릭하여 이미지를 선택하세요</span>
+                                <span class="note"></span>
+                            </div>
+                            <input type="hidden" id="content" name="content" value=""/>
+                        </form>
+                    </div>
+
+                    <div class="wrap-button">
+                        <button id="write-button" class="button-thieyong">
+                            작성하기
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-5 mw-100">
+                {% for item in contents %}
+                    <div class="text-center bg-transparent border-0">
+                    {% for image in item.image_set.all %}
+                        <div class="px-0">
+                        <img class="rounded img-fluid w-100" src="{{ image.resource.url }}"
+                                 alt="">
+                         </div>
+                    {% endfor %}
+                    <div class="mt-4">
+                        <p class="">{{ item.content }}</p>
+                    </div>
+                    </div>
+                    <hr class="divider my-5"/>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    Dropzone.autoDiscover = false;
+
+    $(function() {
+        dzOptions = {
+            url: '/api/contents/',
+            uploadMultiple: true,
+            acceptedFiles: 'image/*',
+            maxFiles: 2,
+            autoProcessQueue: false,
+            addRemoveLinks : true,
+            init: function() {
+                this.on('successmultiple', function (file, resp) {
+                    alert('등록되었습니다.');
+                    this.removeAllFiles(true);
+                    location.reload();
+                });
+                this.on('error', function (file, resp) {
+                });
+                this.on("completemultiple", function(file) {
+                });
+                this.on("sendingmultiple", function(file, xhr, formData) {
+                    formData.append("content", $("#text").val());
+                });
+            }
+        };
+        var uploader = $("#upload-widget").dropzone(dzOptions);
+
+
+        $("#write-button").click(function() {
+            $("#content").val($("#text").val());
+            var dz = Dropzone.forElement(".dropzone");
+            dz.processQueue();
+        })
+
+        $("#logout").click(function () {
+            $.get("/api/logout/", function () {
+                location.reload();
+            });
+        });
+
+        $("#text").val("");
+    });
+
+    </script>
+{% endblock %}

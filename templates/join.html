@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+
+{% load static %}
+{% block header %}
+    <link type="text/css" rel="stylesheet" href="{% static '/styles/main.css' %}">
+{% endblock %}
+
+{% block body %}
+<script type="text/javascript">
+    $(function () {
+        $("#join").click(function () {
+            $.ajax({
+                "url": "/api/users/", "type": "post", "dataType": "json",
+                "data": {
+                    "username": $("#username").val(),
+                    "password": $("#password").val(),
+                    "email": $("#email").val()
+                },
+                "success": function (result) {
+                    alert(result.message);
+                    location.href="/login/";
+                },
+                "fail": function (error) {
+                    alert(error);
+                }
+            });
+        });
+    });
+</script>
+<div class="container">
+        <div class="form-box">
+            <div class="wrap">
+                <span class="title">
+                    회원 가입
+                </span>
+                <div class="mt-3"></div>
+                <div class="wrap-input" data-validate="사용할 아이디를 입력하세요.">
+                    <input id="username" class="text-input" type="text" name="username" maxlength="32" placeholder="사용할 아이디를 입력하세요.">
+                    <span class="focus-input" data-placeholder=""></span>
+                </div>
+                <div class="wrap-input" data-validate="암호를 입력하세요.">
+                    <input id="password" class="text-input" type="password" maxlength="32" name="password" placeholder="암호를 입력하세요.">
+                    <span class="focus-input" data-placeholder=""></span>
+                </div>
+                <div class="wrap-input" data-validate="이메일을 입력하세요.">
+                    <input id="email" class="text-input" type="email" name="email" maxlength="64" placeholder="이메일을 입력하세요.">
+                    <span class="focus-input" data-placeholder=""></span>
+                </div>
+                <div class="wrap-button">
+                    <button id="join" class="button-thieyong">
+                        가입하기
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

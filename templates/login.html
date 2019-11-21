@@ -1,0 +1,55 @@
+{% extends "main.html" %}
+{% load static %}
+{% block header %}
+    <link type="text/css" rel="stylesheet" href="{% static '/styles/main.css' %}">
+{% endblock %}
+
+{% block body %}
+<script type="text/javascript">
+    $(function () {
+        $("#login").click(function () {
+            $.ajax({
+                "url": "/api/login/","type": "post", "dataType": "json",
+                "data": {
+                    "username": $("#username").val(),
+                    "password": $("#password").val()
+                },
+                "success": function(result) {
+                    //alert(result.message);
+                    location.href="/";
+                },
+                "fail": function(error) {
+                    alert(error);
+                }
+            });
+        });
+    });
+</script>
+<div class="container">
+        <div class="form-box">
+            <div class="wrap">
+                <span class="logo">
+                </span>
+                <div class="wrap-input" data-validate="아이디를 입력하세요.">
+                    <input id="username" class="text-input" type="text" name="username" placeholder="아이디를 입력하세요.">
+                    <span class="focus-input" data-placeholder=""></span>
+                </div>
+                <div class="wrap-input" data-validate="암호를 입력하세요.">
+                    <input id="password" class="text-input" type="password" name="password" placeholder="암호를 입력하세요.">
+                    <span class="focus-input" data-placeholder=""></span>
+                </div>
+                <div class="wrap-button-login">
+                    <button id="login" class="button-thieyong">
+                        로그인
+                    </button>
+                </div>
+                <div class="mt-4 text-center">
+                    <a class="" href="/join/">
+                        가입하고 싶어요
+                    </a>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

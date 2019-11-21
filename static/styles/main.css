@@ -1,0 +1,245 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+input, textarea {
+    outline: none;
+    border: none;
+}
+
+textarea:focus, input:focus {
+    border-color: transparent !important;
+}
+
+input[type='text'], input[type='number'], input[type='password'], textarea {
+    outline: none;
+    box-shadow:none !important;
+    border:0px solid #ccc !important;
+}
+
+.container .form-box {
+    width: 100%;
+    min-height: 100vh;
+    line-height: 1.2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.form-box .wrap {
+    width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 55px 55px 37px 55px;
+    background: #ffffff;
+    background: -webkit-linear-gradient(top, #00c9a6, #2c3449);
+    background: -o-linear-gradient(top, #00c9a6, #2c3449);
+    background: -moz-linear-gradient(top, #00c9a6, #2c3449);
+    background: linear-gradient(top, #00c9a6, #2c3449);
+}
+
+.form-box .wrap .logo {
+    font-size: 60px;
+    color: #333333;
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto;
+    /*background: #fff no-repeat center center;*/
+    content: url('https://api.iconify.design/flat-color-icons:businesswoman.svg?height=16');
+    vertical-align: -0.125em;
+}
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.24);
+    margin-bottom: 30px;
+}
+
+.text-input {
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    padding: 0 5px 0 5px;
+}
+
+
+.focus-input {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.focus-input::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    background: #fff;
+}
+
+.focus-input::after {
+    font-size: 22px;
+    color: #fff;
+    content: attr(data-placeholder);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 6px;
+    left: 0px;
+    padding-left: 5px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.text-input:focus {
+    padding-left: 5px;
+}
+
+.text-input:focus + .focus-input::after {
+    top: -22px;
+    font-size: 18px;
+}
+
+.text-input:focus + .focus-input::before {
+    width: 100%;
+}
+
+.has-val.text-input + .focus-input::after {
+    top: -22px;
+    font-size: 18px;
+}
+
+.has-val.text-input + .focus-input::before {
+    width: 100%;
+}
+
+.has-val.text-input {
+    padding-left: 5px;
+}
+
+.button-thieyong {
+    width: 100%;
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 120px;
+    height: 50px;
+    border-radius: 25px;
+    border-width: 0px;
+    background: #ffffff;
+    background: -webkit-linear-gradient(top, #00c9a6, #2c3449);
+    background: -o-linear-gradient(top, #00c9a6, #2c3449);
+    background: -moz-linear-gradient(top, #00c9a6, #2c3449);
+    background: linear-gradient(top, #00c9a6, #2c3449);
+    position: relative;
+    z-index: 1;
+}
+
+.button-thieyong::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    opacity: 1;
+}
+
+.button-thieyong:hover {
+    color: #fff;
+}
+
+.button-thieyong:hover:before {
+    opacity: 0;
+}
+
+.title {
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.sub-title {
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    display: block;
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.divider {
+    border-color: #00d0aa;
+    border-width: 1px;
+}
