@@ -2,4 +2,5 @@
 /venv/
 __pycache__/
 /gramming/.env
-/media/upload/
+/media/upload/**/*
+
