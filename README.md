@@ -2,13 +2,13 @@
 
 RDS MySQL, S3 연동.
 
-# 환경
+## 환경
 - RDS MySQL 5.7 DB, SSL 연결.
 - S3 버킷 생성, 퍼블릭 엑세스 설정.
 - EC2에 mysqlclient 설치, Nginx 설치(80->8000 포워딩)
 - gunicorn으로 구동.
 
-# 설치
+## 설치
 ```
 $ git clone THIS_REPOSITORY_CLONE_URL
 $ vi gramming/.env
@@ -35,4 +35,4 @@ $ source venv/bin/activate
 (venv) $ cat gramming/urls.py
 ```
 
-웹브라우저에서 URL 동작 테스트.
+## 웹브라우저에서 URL 동작 테스트.
