@@ -35,4 +35,3 @@ $ source venv/bin/activate
 (venv) $ cat gramming/urls.py
 ```
 
-## 웹브라우저에서 URL 동작 테스트.
